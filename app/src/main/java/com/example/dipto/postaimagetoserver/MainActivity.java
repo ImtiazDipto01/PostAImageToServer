@@ -3,14 +3,17 @@ package com.example.dipto.postaimagetoserver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         ChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chooseimagefile();
+                chooseImageFile();
             }
         });
     }
@@ -42,11 +45,19 @@ public class MainActivity extends AppCompatActivity {
         UploadImageView = (ImageView) findViewById(R.id.uploadimage) ;
     }
 
-    private void chooseimagefile(){
+    private void chooseImageFile(){
         Intent intent = new Intent() ;
         intent.setType("image/*") ;
         intent.setAction(Intent.ACTION_GET_CONTENT) ;
         startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST);
+    }
+
+    private String getStringImage(Bitmap bitmap){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream() ;
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream) ;
+        byte[] imagebyte = byteArrayOutputStream.toByteArray() ;
+        String encodeString = Base64.encodeToString(imagebyte, Base64.DEFAULT) ;
+        return encodeString ;
     }
 
     @Override
@@ -62,6 +73,29 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    class ApiTaskUploadImage extends AsyncTask<Void, Void, Void>{
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
         }
     }
 }
