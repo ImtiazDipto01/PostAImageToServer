@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.dipto.postaimagetoserver.MainActivity">
+
+    <ImageView
+        android:id="@+id/uploadimage"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_margin="15dp"
+        android:src="@drawable/avatar"
+        android:scaleType="fitCenter"/>
+
+    <Button
+        android:id="@+id/chooseimage_btn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Choose Image"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/uploadimage"
+        android:layout_marginTop="5dp"/>
+
+    <EditText
+        android:id="@+id/imagename"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/chooseimage_btn"
+        android:layout_marginTop="20dp"
+        android:hint="Enter Image Name"/>
+    <Button
+        android:id="@+id/uploadimage_btn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="UPload Image"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/imagename"
+        android:layout_marginTop="15dp"/>
+
+
+</RelativeLayout>
